@@ -1,0 +1,40 @@
+* {
+    font-family: sans-serif;
+}
+
+#topbar {
+    border-bottom: 5px groove gray;
+}
+
+#topbar * {
+    display: inline-block;
+}
+
+#topbar h2 {
+    margin-right: 500px;
+}
+
+.error {
+    font-size: 20px;
+    font-weight: bold;
+    color: red;
+}
+
+.form {
+    width: 500px;
+    text-align: right;
+}
+
+.form label {
+    display: block;
+}
+
+table thead * {
+    padding: 10px;
+    border-bottom: 3px solid gray;
+}
+
+table td {
+    padding: 10px;
+    border: 1px solid black;
+}

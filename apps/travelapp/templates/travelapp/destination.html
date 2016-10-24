@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Destination</title>
+        {% load staticfiles %}
+        <link rel="stylesheet" type="text/css" href="{% static 'travelapp/style.css' %}">
+    </head>
+    <body>
+        <div id="wrapper">
+            <div id="topbar">
+                <h2>Welcome, {{ user.first_name }}</h2>
+                <a href="/travels"><button type="button" name="home">Home</button></a>
+                <a href="/logout"><button type="button" name="logout">Log Out</button></a>
+            </div>
+            <h2>{{ trip.destination }}</h2>
+            <ul>
+                <li>Planned by: {{ trip.User.first_name }} {{ trip.User.last_name }}</li>
+                <li>Description: {{ trip.description }}</li>
+                <li>Travel Date From: {{ trip.from_date }}</li>
+                <li>Travel Date To: {{ trip.to_date }}</li>
+            </ul>
+            <h3>Other users joining the group:</h3>
+            {% if guests %}
+                <ul>
+                    {% for guest in guests %}
+                        <li>{{ guest.first_name }} {{ guest.last_name }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No one is attending yet!</p>
+            {% endif %}
+            {% if not joined %}
+                <h4><a href="/travels/destination/join/{{ trip.id }}">Join this trip!</a></h4>
+            {% endif %}
+        </div>
+    </body>
+</html>

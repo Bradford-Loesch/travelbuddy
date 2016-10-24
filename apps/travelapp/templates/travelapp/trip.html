@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Destination</title>
+        {% load staticfiles %}
+        <link rel="stylesheet" type="text/css" href="{% static 'travelapp/style.css' %}">
+    </head>
+    <body>
+        <div id="wrapper">
+            <div id="topbar">
+                <h2>Welcome, {{ user.first_name }}</h2>
+                <a href="/travels"><button type="button" name="home">Home</button></a>
+                <a href="/logout"><button type="button" name="logout">Log Out</button></a>
+            </div>
+            {% if messages %}
+                {% for message in messages %}
+                    <p class="error">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+            <h2>Add a Trip</h2>
+            <form class="form" action="/travels/add/new" method="POST">
+                {% csrf_token %}
+                <label for="destination">Destination: <input type="text" name="destination" value=""></label><br>
+                <label for="description">Description: <input type="text" name="description" value=""></label><br>
+                <label for="fromdate">Travel date from: <input type="date" name="fromdate" value=""></label><br>
+                <label for="todate">Travel date to: <input type="date" name="todate" value=""></label><br>
+                <input type="submit" name="submit" value="Add Trip!">
+            </form>
+        </div>
+    </body>
+</html>
