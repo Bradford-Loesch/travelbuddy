@@ -2,20 +2,27 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Destination</title>
+        <title>Travel Buddy</title>
         {% load staticfiles %}
-        <link rel="stylesheet" type="text/css" href="{% static 'travelapp/style.css' %}">
+        <!-- <link rel="stylesheet" type="text/css" href="{% static 'travelapp/style.css' %}"> -->
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     </head>
     <body>
-        <div id="wrapper">
-            <div id="topbar">
-                <h2>Welcome, {{ user.first_name }}</h2>
-                <a href="/logout"><button type="button" name="logout">Log Out</button></a>
+        <div class="container">
+            <div id="topbar" class="navbar navbar-default">
+                <div class="navbar-header">
+                    <h2>Welcome, {{ user.first_name }}</h2>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/logout"><button type="button" name="logout" class="btn btn-default">Log Out</button></a></li>
+                    </ul>
+                </div>
             </div>
-            <div id="yourtrips">
+            <div id="yourtrips" class="container">
                 <h3>Your Scheduled Trips</h3>
                 {% if yourtrips or joinedtrips %}
-                    <table>
+                    <table class="table">
                         <thead>
                             <th>Destination</th>
                             <th>Travel Start Date</th>
@@ -45,10 +52,10 @@
                     <h3><a href="/travels/add">You have no trips. Add one now!</a></h3>
                 {% endif %}
             </div>
-            <div id="trips">
+            <div id="trips" class="container">
                 <h3>Other Users' Scheduled Trips</h3>
                 {% if trips %}
-                    <table>
+                    <table class="table">
                         <thead>
                             <th>Organizer</th>
                             <th>Destination</th>
@@ -70,7 +77,9 @@
                     </table>
                 {% endif %}
             </div>
-            <h5><a href="/travels/add">Add trip!</a></h5>
+            <h5><a href="/travels/add"><button type="button" name="addtrip" class="btn btn-default">Add a Trip!</button></a></h5>
         </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </body>
 </html>

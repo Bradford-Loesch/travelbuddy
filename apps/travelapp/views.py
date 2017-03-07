@@ -169,8 +169,18 @@ def validtrip(request, context):
     if not DATE_REGEX.match(context['fromdate']):
         messages.error(request, 'Please enter a valid from date.')
         failboat = True
+    elif DATE_REGEX.match(context['fromdate']):
+        fromdate = datetime.date(int(context['fromdate'][:4]), int(context['fromdate'][5:7]), int(context['fromdate'][8:10]))
+    elif fromdate < datetime.date.today():
+        messages.error(request, 'Please enter a date on or after today.')
+        failboat = True
     if not DATE_REGEX.match(context['todate']):
         messages.error(request, 'Please enter a valid to date.')
+        failboat = True
+    elif DATE_REGEX.match(context['todate']):
+        todate = datetime.date(int(context['todate'][:4]), int(context['todate'][5:7]), int(context['todate'][8:10]))
+    elif todate < fromdate:
+        messages.error(request, 'Please enter an end date on or after the start date.')
         failboat = True
     if failboat:
         return False

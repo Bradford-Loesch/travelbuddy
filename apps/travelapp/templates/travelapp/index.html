@@ -1,36 +1,63 @@
 <html>
 <head>
-    <title>Mike's favorite app.</title>
+    <title>Travel Buddy</title>
     {% load staticfiles %}
-    <link rel="stylesheet" type="text/css" href="{% static 'travelapp/style.css' %}">
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'travelapp/style.css' %}"> -->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
-    <div id="wrapper">
-        <h1>Welcome to Travel Buddy</h1>
-        {% if messages %}
-            {% for message in messages %}
-                <p class="error">{{ message }}</p>
-            {% endfor %}
-        {% endif %}
-        <hr>
-        <h2>Login</h2>
-        <form class='form' action='/login' method='POST'>
-            {% csrf_token %}
-            <label for="loginemail">Email:<input type="text" name="loginemail" id="loginemail"></label><br>
-            <label for="loginpassword">Password:<input type="password" name="loginpassword" id="loginpassword"></label><br>
-            <input type="submit" value="Login">
-        </form>
-        <hr>
-        <h2>Register</h2>
-        <form class='form' action='/register' method='POST'>
-            {% csrf_token %}
-            <label for="first_name">First Name:<input type="text" name="first_name" id="first_name"></label><br>
-            <label for="last_name">Last Name:<input type="text" name="last_name" id="last_name"></label><br>
-            <label for="email">Email:<input type="text" name="email" id="email"></label><br>
-            <label for="passworda">Password:<input type="password" name="passworda" id="passworda"></label><br>
-            <label for="passwordb">Retype Password:<input type="password" name="passwordb" id="passwordb"></label><br>
-            <input type="submit" value="Register">
-        </form>
+    <h1>Welcome to Travel Buddy</h1>
+    {% if messages %}
+        {% for message in messages %}
+            <p class="text-danger">{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+    <hr>
+    <div id="wrapper" class="container row">
+        <div class="col-md-6">
+            <h2>Login</h2>
+            <form class='form' action='/login' method='POST'>
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="loginemail">Email:</label>
+                    <input type="text" name="loginemail" id="loginemail" class="form-control" placeholder="email">
+                </div>
+                <div class="form-group">
+                    <label for="loginpassword">Password:</label><br>
+                    <input type="password" name="loginpassword" id="loginpassword" class="form-control" placeholder="password">
+                </div>
+                <input type="submit" value="Login" class="btn btn-default">
+            </form>
+        </div>
+        <div class="col-md-6">
+            <h2>Register</h2>
+            <form class='form' action='/register' method='POST'>
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="first_name">First Name:</label><br>
+                    <input type="text" name="first_name" id="first_name" class="form-control" placeholder="first name">
+                </div>
+                <div class="form-group">
+                    <label for="last_name">Last Name:</label><br>
+                    <input type="text" name="last_name" id="last_name" class="form-control" placeholder="last name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label><br>
+                    <input type="text" name="email" id="email" class="form-control" placeholder="email">
+                </div>
+                <div class="form-group">
+                    <label for="passworda">Password:</label><br>
+                    <input type="password" name="passworda" id="passworda" class="form-control" placeholder="password">
+                </div>
+                <div class="form-group">
+                    <label for="passwordb">Confirm Password:</label><br>
+                    <input type="password" name="passwordb" id="passwordb" class="form-control" placeholder="confirm password">
+                </div>
+                <input type="submit" value="Register" class="btn btn-default">
+            </form>
+        </div>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>

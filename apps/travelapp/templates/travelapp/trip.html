@@ -2,31 +2,54 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Destination</title>
+        <title>New Trip</title>
         {% load staticfiles %}
-        <link rel="stylesheet" type="text/css" href="{% static 'travelapp/style.css' %}">
+        <!-- <link rel="stylesheet" type="text/css" href="{% static 'travelapp/style.css' %}"> -->
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     </head>
     <body>
-        <div id="wrapper">
-            <div id="topbar">
-                <h2>Welcome, {{ user.first_name }}</h2>
-                <a href="/travels"><button type="button" name="home">Home</button></a>
-                <a href="/logout"><button type="button" name="logout">Log Out</button></a>
+        <div id="wrapper" class="container">
+            <div id="topbar" class="navbar navbar-default">
+                <div class="navbar-header">
+                    <h2>Welcome, {{ user.first_name }}</h2>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/travels"><button type="button" name="home" class="btn btn-default">Home</button></a></li>
+                        <li><a href="/logout"><button type="button" name="logout" class="btn btn-default">Log Out</button></a></li>
+                    </ul>
+                </div>
             </div>
-            {% if messages %}
-                {% for message in messages %}
-                    <p class="error">{{ message }}</p>
-                {% endfor %}
-            {% endif %}
-            <h2>Add a Trip</h2>
-            <form class="form" action="/travels/add/new" method="POST">
-                {% csrf_token %}
-                <label for="destination">Destination: <input type="text" name="destination" value=""></label><br>
-                <label for="description">Description: <input type="text" name="description" value=""></label><br>
-                <label for="fromdate">Travel date from: <input type="date" name="fromdate" value=""></label><br>
-                <label for="todate">Travel date to: <input type="date" name="todate" value=""></label><br>
-                <input type="submit" name="submit" value="Add Trip!">
-            </form>
+            <div class="container">
+                {% if messages %}
+                    {% for message in messages %}
+                        <p class="text-warning">{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
+                <h2>Add a Trip</h2>
+                <form class="form" action="/travels/add/new" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="destination">Destination: </label>
+                        <input type="text" name="destination" class="form-control" placeholder="destination">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description: </label>
+                        <input type="text" name="description" class="form-control" placeholder="description">
+                    </div>
+                    <div class="form-group">
+                        <label for="fromdate">Travel date from: </label>
+                        <input type="date" name="fromdate" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="todate">Travel date to: </label>
+                        <input type="date" name="todate" class="form-control">
+                    </div>
+                    <input type="submit" name="submit" value="Add Trip!" class="btn btn-default">
+                </form>
+            </div>
         </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </body>
 </html>
